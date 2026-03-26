@@ -27,3 +27,14 @@ resource "aws_api_gateway_method" "post" {
   }
   request_validator_id = aws_api_gateway_request_validator.validator.id
 }
+
+resource "aws_cloudwatch_event_rule" "rule" {
+  event_bus_name = aws_cloudwatch_event_bus.custom_bus.name
+event_pattern = jsonencode({
+    "source": ["custom.api"],
+    "detail-type": ["customEvent"],
+    "detail": {
+      "type": ["important"]
+    }
+  })
+}
