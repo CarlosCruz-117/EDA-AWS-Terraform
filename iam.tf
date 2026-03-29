@@ -9,6 +9,7 @@ assume_role_policy = jsonencode({
     }]
   })
 }
+
 resource "aws_iam_role_policy" "apigw_policy" {
   role = aws_iam_role.apigw_role.id
 policy = jsonencode({
